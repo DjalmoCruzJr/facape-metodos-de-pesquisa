@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>C:\Documents and Settings\djalmo.junior\Meus documentos\DJALMO\DESENVOLVIMENTOS\Projetos\metodos-de-pesquisa\main.c</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta name="generator" content="SynEdit HTML exporter" />
+<style type="text/css">
+<!--
+body { color: #000000; background-color: #FFFFFF; }
+.cpp1-assembler { color: #0000FF; }
+.cpp1-character { color: #000000; }
+.cpp1-comment { color: #6E6E6E; font-style: italic; }
+.cpp1-float { color: #800080; }
+.cpp1-hexadecimal { background-color: #FFFFFF; color: #800080; }
+.cpp1-identifier { background-color: #FFFFFF; color: #000000; }
+.cpp1-illegalchar { background-color: #FFFFFF; color: #FF0000; font-weight: bold; }
+.cpp1-number { background-color: #FFFFFF; color: #800080; }
+.cpp1-octal { background-color: #FFFFFF; color: #800080; }
+.cpp1-preprocessor { background-color: #FFFFFF; color: #008000; font-weight: bold; }
+.cpp1-reservedword { background-color: #FFFFFF; color: #000080; font-weight: bold; }
+.cpp1-space { background-color: #FFFFFF; color: #000000; }
+.cpp1-string { background-color: #FFFFFF; color: #FF0000; }
+.cpp1-symbol { background-color: #FFFFFF; color: #800000; font-weight: bold; }
+-->
+</style>
+</head>
+<body>
+<pre>
+<code><span style="font: 11pt Courier New;"><span class="cpp1-comment">/*************************************************************/
+/* Programa Principal										 */
+/*************************************************************/
+</span><span class="cpp1-preprocessor">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;conio.h&gt;
+
+#include &quot;metodos-pesquisa.h&quot;
+
+#define BUSCA_ITERATIVA 1
+#define BUSCA_BINARIA   2
+
+#define MAX 			10
+
+</span><span class="cpp1-comment">/*************************************************************/
+/* Prototipos de Funcoes Auxiliares 						 */
+/*************************************************************/
+</span><span class="cpp1-reservedword">void</span><span class="cpp1-space"> cabecalho</span><span class="cpp1-symbol">(</span><span class="cpp1-reservedword">void</span><span class="cpp1-symbol">);
+</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> menu</span><span class="cpp1-symbol">(</span><span class="cpp1-reservedword">void</span><span class="cpp1-symbol">);
+</span><span class="cpp1-reservedword">void</span><span class="cpp1-space"> gerarNumeros</span><span class="cpp1-symbol">(</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> </span><span class="cpp1-symbol">*</span><span class="cpp1-identifier">numeros</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> inicio</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> limite</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> qtd</span><span class="cpp1-symbol">);
+</span><span class="cpp1-reservedword">void</span><span class="cpp1-space"> gerarNumerosOrdenados</span><span class="cpp1-symbol">(</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> </span><span class="cpp1-symbol">*</span><span class="cpp1-identifier">numeros</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> inicial</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> limite</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> qtd</span><span class="cpp1-symbol">);
+</span><span class="cpp1-reservedword">void</span><span class="cpp1-space"> bubleSort</span><span class="cpp1-symbol">(</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> </span><span class="cpp1-symbol">*</span><span class="cpp1-identifier">numeros</span><span class="cpp1-symbol">);
+
+</span><span class="cpp1-comment">/*************************************************************/
+/* Funcao Principal do Programa								 */
+/*************************************************************/
+</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> main</span><span class="cpp1-symbol">(</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> argc</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">char</span><span class="cpp1-space"> </span><span class="cpp1-symbol">*</span><span class="cpp1-identifier">argv</span><span class="cpp1-symbol">[])
+{</span><span class="cpp1-space">	
+	</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> i</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> n</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> numeros</span><span class="cpp1-symbol">[</span><span class="cpp1-identifier">MAX</span><span class="cpp1-symbol">];
+</span><span class="cpp1-space">	
+	cabecalho</span><span class="cpp1-symbol">();
+</span><span class="cpp1-space">	
+	</span><span class="cpp1-reservedword">for</span><span class="cpp1-symbol">(;;)
+</span><span class="cpp1-space">	</span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">		</span><span class="cpp1-reservedword">switch</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">menu</span><span class="cpp1-symbol">())</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">			</span><span class="cpp1-reservedword">case</span><span class="cpp1-space"> BUSCA_ITERATIVA</span><span class="cpp1-symbol">:
+</span><span class="cpp1-space">				gerarNumeros</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">numeros</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> </span><span class="cpp1-number">1</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> </span><span class="cpp1-number">100</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> MAX</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">				
+				printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;\nNUMEROS GERADOS: &quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">				</span><span class="cpp1-reservedword">for</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">i </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-number">0</span><span class="cpp1-symbol">;</span><span class="cpp1-space"> i </span><span class="cpp1-symbol">&lt;</span><span class="cpp1-space"> MAX</span><span class="cpp1-symbol">;</span><span class="cpp1-space"> i</span><span class="cpp1-symbol">++)
+</span><span class="cpp1-space">					printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;%d &quot;</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> numeros</span><span class="cpp1-symbol">[</span><span class="cpp1-identifier">i</span><span class="cpp1-symbol">]);
+</span><span class="cpp1-space">				
+				printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;\n\nInforme o numero a ser encontrado: &quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">				fflush</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">stdin</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">				scanf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;%d&quot;</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> </span><span class="cpp1-symbol">&amp;</span><span class="cpp1-identifier">n</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">				
+				i </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> buscaSequencial</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">numeros</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> MAX</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> n</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">				
+				</span><span class="cpp1-reservedword">if</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">i </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> NONE</span><span class="cpp1-symbol">)
+</span><span class="cpp1-space">					printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;\n\n%d nao foi encontrado.&quot;</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> n</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">				</span><span class="cpp1-reservedword">else
+</span><span class="cpp1-space">					printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;\n\n%d encontrado na posicao %d.&quot;</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> n</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> i</span><span class="cpp1-symbol">+</span><span class="cpp1-number">1</span><span class="cpp1-symbol">);</span><span class="cpp1-space">	
+				printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;\n\nPressione qualquer tecla para continuar...&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">				getch</span><span class="cpp1-symbol">();</span><span class="cpp1-space">			
+			</span><span class="cpp1-reservedword">break</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">			
+			</span><span class="cpp1-reservedword">case</span><span class="cpp1-space"> BUSCA_BINARIA</span><span class="cpp1-symbol">:
+</span><span class="cpp1-space">				gerarNumerosOrdenados</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">numeros</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> </span><span class="cpp1-number">1</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> </span><span class="cpp1-number">100</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> MAX</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">								
+				printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;\nNUMEROS GERADOS: &quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">				</span><span class="cpp1-reservedword">for</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">i </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-number">0</span><span class="cpp1-symbol">;</span><span class="cpp1-space"> i </span><span class="cpp1-symbol">&lt;</span><span class="cpp1-space"> MAX</span><span class="cpp1-symbol">;</span><span class="cpp1-space"> i</span><span class="cpp1-symbol">++)
+</span><span class="cpp1-space">					printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;%d &quot;</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> numeros</span><span class="cpp1-symbol">[</span><span class="cpp1-identifier">i</span><span class="cpp1-symbol">]);
+</span><span class="cpp1-space">				
+				printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;\n\nInforme o numero a ser encontrado: &quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">				fflush</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">stdin</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">				scanf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;%d&quot;</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> </span><span class="cpp1-symbol">&amp;</span><span class="cpp1-identifier">n</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">				
+				i </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> buscaSequencial</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">numeros</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> MAX</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> n</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">				
+				</span><span class="cpp1-reservedword">if</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">i </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> NONE</span><span class="cpp1-symbol">)
+</span><span class="cpp1-space">					printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;\n\n%d nao foi encontrado.&quot;</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> n</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">				</span><span class="cpp1-reservedword">else
+</span><span class="cpp1-space">					printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;\n\n%d encontrado na posicao %d.&quot;</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> n</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> i</span><span class="cpp1-symbol">+</span><span class="cpp1-number">1</span><span class="cpp1-symbol">);</span><span class="cpp1-space">	
+				printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;\n\nPressione qualquer tecla para continuar...&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">				getch</span><span class="cpp1-symbol">();</span><span class="cpp1-space">			
+			</span><span class="cpp1-reservedword">break</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">			
+			</span><span class="cpp1-reservedword">default</span><span class="cpp1-symbol">:
+</span><span class="cpp1-space">				printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;\nPressione qualquer tecla para finalizar...&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">				getch</span><span class="cpp1-symbol">();
+</span><span class="cpp1-space">				exit</span><span class="cpp1-symbol">(</span><span class="cpp1-number">0</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">		</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">	</span><span class="cpp1-symbol">}</span><span class="cpp1-space">	
+	</span><span class="cpp1-reservedword">return</span><span class="cpp1-space"> </span><span class="cpp1-number">0</span><span class="cpp1-symbol">;
+}
+
+</span><span class="cpp1-comment">/*************************************************************/
+/* Implementacao das Funcoes Auxiliares 					 */
+/*************************************************************/
+</span><span class="cpp1-reservedword">void</span><span class="cpp1-space"> cabecalho</span><span class="cpp1-symbol">(</span><span class="cpp1-reservedword">void</span><span class="cpp1-symbol">)
+{</span><span class="cpp1-space">	
+	printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;\nProjeto	: Metodos de Pesquisa&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">	printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;\nCriado por: DjalmoCruzJr&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">	printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;\nDescricao : Implementacao em C e aplicacao dos conceitos&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">	printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;\n\treferentes aos metodos de pesquisa de Busca Iterativa&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">	printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;\n\te Busca Binaria.&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">	printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;\n\nPressione qualquer tecla para continuar...&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">	getch</span><span class="cpp1-symbol">();
+}
+
+</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> menu</span><span class="cpp1-symbol">(</span><span class="cpp1-reservedword">void</span><span class="cpp1-symbol">)
+{
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> opcao</span><span class="cpp1-symbol">;</span><span class="cpp1-space">	
+	</span><span class="cpp1-reservedword">do
+</span><span class="cpp1-space">	</span><span class="cpp1-symbol">{</span><span class="cpp1-space">		
+		system</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;cls&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">		printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;\n\n\tMENU DE OPCOES\n&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">		printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;\nOpcaoes disponiveis.\n&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">		printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;\n[1] - Busca Iterativa&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">		printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;\n[2] - Busca Binaria&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">		printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;\n[0] - Sair&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">		printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;\n\nInforme sua opcao: &quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">		fflush</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">stdin</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">		scanf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;%d&quot;</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> </span><span class="cpp1-symbol">&amp;</span><span class="cpp1-identifier">opcao</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">		
+		</span><span class="cpp1-reservedword">if</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">opcao </span><span class="cpp1-symbol">&lt;</span><span class="cpp1-space"> </span><span class="cpp1-number">0</span><span class="cpp1-space"> </span><span class="cpp1-symbol">||</span><span class="cpp1-space"> opcao </span><span class="cpp1-symbol">&gt;</span><span class="cpp1-space"> </span><span class="cpp1-number">2</span><span class="cpp1-symbol">)
+</span><span class="cpp1-space">		</span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">			printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;\n\nOpcao invalida. VERIFIQUE!&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">			printf</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;\nPressione qualquer tecla para continuar...&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">			getch</span><span class="cpp1-symbol">();
+</span><span class="cpp1-space">			system</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;cls&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">		</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">	</span><span class="cpp1-symbol">}</span><span class="cpp1-reservedword">while</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">opcao </span><span class="cpp1-symbol">&lt;</span><span class="cpp1-space"> </span><span class="cpp1-number">0</span><span class="cpp1-space"> </span><span class="cpp1-symbol">||</span><span class="cpp1-space"> opcao </span><span class="cpp1-symbol">&gt;</span><span class="cpp1-space"> </span><span class="cpp1-number">2</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">return</span><span class="cpp1-space"> opcao</span><span class="cpp1-symbol">;
+}
+
+</span><span class="cpp1-reservedword">void</span><span class="cpp1-space"> gerarNumeros</span><span class="cpp1-symbol">(</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> </span><span class="cpp1-symbol">*</span><span class="cpp1-identifier">numeros</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> inicio</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> limite</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> qtd</span><span class="cpp1-symbol">)
+{
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> i</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	
+	srand</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">time</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">NULL</span><span class="cpp1-symbol">));
+</span><span class="cpp1-space">	
+	</span><span class="cpp1-reservedword">for</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">i </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-number">0</span><span class="cpp1-symbol">;</span><span class="cpp1-space"> i </span><span class="cpp1-symbol">&lt;</span><span class="cpp1-space"> qtd</span><span class="cpp1-symbol">;</span><span class="cpp1-space"> i</span><span class="cpp1-symbol">++)</span><span class="cpp1-space"> 
+		numeros</span><span class="cpp1-symbol">[</span><span class="cpp1-identifier">i</span><span class="cpp1-symbol">]</span><span class="cpp1-space"> </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> inicio </span><span class="cpp1-symbol">+</span><span class="cpp1-space"> rand</span><span class="cpp1-symbol">()</span><span class="cpp1-space"> </span><span class="cpp1-symbol">%</span><span class="cpp1-space"> limite</span><span class="cpp1-symbol">;
+}
+
+</span><span class="cpp1-reservedword">void</span><span class="cpp1-space"> gerarNumerosOrdenados</span><span class="cpp1-symbol">(</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> </span><span class="cpp1-symbol">*</span><span class="cpp1-identifier">numeros</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> inicio</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> limite</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> qtd</span><span class="cpp1-symbol">)
+{
+</span><span class="cpp1-space">	gerarNumeros</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">numeros</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> inicio</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> limite</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> qtd</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">	bubleSort</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">numeros</span><span class="cpp1-symbol">);
+}
+
+</span><span class="cpp1-reservedword">void</span><span class="cpp1-space"> bubleSort</span><span class="cpp1-symbol">(</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> </span><span class="cpp1-symbol">*</span><span class="cpp1-identifier">numeros</span><span class="cpp1-symbol">)
+{
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> i</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> j</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> temp</span><span class="cpp1-symbol">;</span><span class="cpp1-space">     
+    </span><span class="cpp1-reservedword">for</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">i </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-number">0</span><span class="cpp1-symbol">;</span><span class="cpp1-space"> i </span><span class="cpp1-symbol">&lt;</span><span class="cpp1-space"> MAX</span><span class="cpp1-symbol">;</span><span class="cpp1-space"> i</span><span class="cpp1-symbol">++)
+</span><span class="cpp1-space">	   	</span><span class="cpp1-reservedword">for</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">j </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-number">1</span><span class="cpp1-symbol">;</span><span class="cpp1-space"> j </span><span class="cpp1-symbol">&lt;</span><span class="cpp1-space"> MAX</span><span class="cpp1-symbol">-</span><span class="cpp1-identifier">i</span><span class="cpp1-symbol">;</span><span class="cpp1-space"> j</span><span class="cpp1-symbol">++)
+</span><span class="cpp1-space">			</span><span class="cpp1-reservedword">if</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">numeros</span><span class="cpp1-symbol">[</span><span class="cpp1-identifier">j</span><span class="cpp1-symbol">-</span><span class="cpp1-number">1</span><span class="cpp1-symbol">]</span><span class="cpp1-space"> </span><span class="cpp1-symbol">&gt;</span><span class="cpp1-space"> numeros</span><span class="cpp1-symbol">[</span><span class="cpp1-identifier">j</span><span class="cpp1-symbol">])
+</span><span class="cpp1-space">			</span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">			    temp </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> numeros</span><span class="cpp1-symbol">[</span><span class="cpp1-identifier">j</span><span class="cpp1-symbol">-</span><span class="cpp1-number">1</span><span class="cpp1-symbol">];
+</span><span class="cpp1-space">				numeros</span><span class="cpp1-symbol">[</span><span class="cpp1-identifier">j</span><span class="cpp1-symbol">-</span><span class="cpp1-number">1</span><span class="cpp1-symbol">]</span><span class="cpp1-space"> </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> numeros</span><span class="cpp1-symbol">[</span><span class="cpp1-identifier">j</span><span class="cpp1-symbol">];
+</span><span class="cpp1-space">				numeros</span><span class="cpp1-symbol">[</span><span class="cpp1-identifier">j</span><span class="cpp1-symbol">]</span><span class="cpp1-space"> </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> temp</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">			</span><span class="cpp1-symbol">}</span><span class="cpp1-space">		
+</span><span class="cpp1-symbol">}
+</span></span>
+</code></pre>
+</body>
+</html>
